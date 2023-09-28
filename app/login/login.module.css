@@ -1,0 +1,113 @@
+.hidden {
+    display: none;
+    visibility: hidden;
+}
+
+.mainContent {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.loginform {
+    width: 50%;
+    height: auto;
+    background-color: rgb(240, 240, 240);
+    padding: 2rem;
+    border-radius: 8px;
+}
+
+.divBtn {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 2rem;
+}
+
+.btn{
+    border: none;
+    text-transform: uppercase;
+    background-color: rgb(177, 255, 174);
+    padding: 0.5rem;
+    border-radius: 5px;
+}
+
+.btn:hover {
+    background-color: rgb(104, 255, 99);
+    transition: 0.2s ease-in-out;
+}
+
+.btn:active {
+    scale: 1.25;
+    transition: 0.1s;
+}
+
+.inputfield {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-top: 1.5rem;
+}
+
+.inform{
+    width: 50%;
+    height: 1rem;
+    border: none;
+    border-radius: 5px;
+    padding: 0.75rem;
+    outline: none;
+}
+
+.secusers { 
+    width: 90%;
+    background-color: rgb(255, 255, 255);
+    padding: 2rem;
+    justify-content: flex-start;
+    border-radius: 8px;
+    height: auto;
+    min-height: 0vh;
+    max-height: 30vh;
+    overflow-y: scroll;
+}
+
+.users {
+    border-top: 1px solid black;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 5rem;
+}
+
+.userlist {
+    margin: 5rem;
+    padding: 3rem;
+    width: 50%;
+    border-radius: 8px;
+    background-color: rgb(240, 240, 240);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.list {
+    display: flex;
+    flex-direction: column;
+}
+
+.btnusers {
+    display: flex;
+    flex-direction: column;
+}
+
+.edit {
+    margin: 1rem;
+}
+
+.delete {
+    margin: 1rem;
+}
