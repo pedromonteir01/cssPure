@@ -4,13 +4,14 @@ import styles from './login.module.css'
 import User from '../models/User/user';
 import Users from '../models/User/users';
 
+const users = new Users();
+
 function Login() {
     let empty = '';
     const [name, setName] = useState(empty);
     const [email, setEmail] = useState(empty);
     const [birthday, setBirthday] = useState(empty);
 
-    const users = new Users();
 
     const showUsers = () => {
         if(name.trim() == '' || email.trim() == '' || birthday.trim() == '') {
@@ -18,6 +19,10 @@ function Login() {
         } else {
             const user = new User(name, email, birthday);
             users.addUser(user);
+            setName(empty);
+            setEmail(empty);
+            setBirthday(empty);
+
         }
     }
 
@@ -59,10 +64,10 @@ function Login() {
             {
                 users.list.map((user) => (
                     <div>
-                        <p>Nome: {user.name}</p>
-                        <p>Nome: {user.id}</p>
-                        <p>Nome: {user.email}</p>
-                        <p>Nome: {user.age}</p>
+                        <p><strong>Name:</strong> {user.name}</p>
+                        <p><strong>Id:</strong> {user.id}</p>
+                        <p><strong>Email:</strong> {user.email}</p>
+                        <p><strong>Idade:</strong> {user.age}</p>
                     </div>
                 ))
             }
