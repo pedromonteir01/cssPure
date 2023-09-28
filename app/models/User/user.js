@@ -4,7 +4,7 @@ export default class User {
         this.email = email;
         this.birthdate = birthdate;
         this.age = this.getAge(birthdate);
-        this. id = this.getId();
+        this.id = this.getId();
     }
     
     getAge(birth) {
