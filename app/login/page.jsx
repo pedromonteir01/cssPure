@@ -150,7 +150,7 @@ function Login() {
                     </section>
                 </article>
             </div>
-            <Footer></Footer>
+            <Footer/>
         </main>
     );
 }
