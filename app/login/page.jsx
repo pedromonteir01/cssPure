@@ -5,6 +5,8 @@ import User from '../models/User/user';
 import Users from '../models/User/users';
 import { useAmp } from 'next/amp';
 import { useSearchParams } from 'next/navigation';
+import Header from '../components/header/Header';
+import Footer from '../components/footer/Footer';
 
 const users = new Users();
 
@@ -43,7 +45,7 @@ function Login() {
         setEmail(email);
         setBirthday(birthdate);
 
-        setAux(id);        
+        setAux(id);
     }
 
     const editUser = () => {
@@ -55,7 +57,7 @@ function Login() {
         setBirthday(empty);
 
         setList(users.list);
-        
+
         setShow(false);
 
         setAux(null);
@@ -68,83 +70,87 @@ function Login() {
             user.id == id ? already = true : already
         ))
 
-        if(already) {
-         users.deleteUser(id);
-         setList(users.list);
+        if (already) {
+            users.deleteUser(id);
+            setList(users.list);
         }
     }
 
     return (
-        <main className={styles.mainContent}>
-            <h1>REGISTER</h1>
-            <article className={styles.loginform}>
-                <section className={styles.inputfield}>
-                    <label>Nome:</label>
-                    <input type="text"
-                        value={name}
-                        onChange={(param) => {
-                            setName(param.target.value);
-                        }}
-                        className={styles.inform}
-                    />
-                </section>
+        <main>
+            <Header></Header>
+            <div className={styles.mainContent}>
+                <h1>REGISTER</h1>
+                <article className={styles.loginform}>
+                    <section className={styles.inputfield}>
+                        <label>Nome:</label>
+                        <input type="text"
+                            value={name}
+                            onChange={(param) => {
+                                setName(param.target.value);
+                            }}
+                            className={styles.inform}
+                        />
+                    </section>
 
-                <section className={styles.inputfield}>
-                    <label>E-mail:</label>
-                    <input type="email"
-                        value={email}
-                        onChange={(param) => {
-                            setEmail(param.target.value);
-                        }}
-                        className={styles.inform}
-                    />
-                </section>
+                    <section className={styles.inputfield}>
+                        <label>E-mail:</label>
+                        <input type="email"
+                            value={email}
+                            onChange={(param) => {
+                                setEmail(param.target.value);
+                            }}
+                            className={styles.inform}
+                        />
+                    </section>
 
-                <section className={styles.inputfield}>
-                    <label>Data de nascimento:</label>
-                    <input type="date"
-                        value={birthday}
-                        onChange={(param) => {
-                            setBirthday(param.target.value);
-                        }}
-                        className={styles.inform}
-                    />
-                </section>
+                    <section className={styles.inputfield}>
+                        <label>Data de nascimento:</label>
+                        <input type="date"
+                            value={birthday}
+                            onChange={(param) => {
+                                setBirthday(param.target.value);
+                            }}
+                            className={styles.inform}
+                        />
+                    </section>
 
-                <section className={styles.divBtn}>
-                    {
-                        show && (
-                            <button onClick={editUser} className={styles.btn}>Editar</button>
-                        )
-                    }
-                      {
-                        !show && (
-                            <button onClick={showUsers} className={styles.btn}>Registrar</button>
-                        )
-                    }
-                </section>
-            </article>
-            <article className={styles.userlist}>
-                <h2>Lista</h2>
-                <section className={styles.secusers}>
-                    {
-                        list.map((user) => (
-                            <div key={user.id} className={styles.users}>
-                                <div className={styles.list}>
-                                    <p><strong>Name:</strong> {user.name}</p>
-                                    <p><strong>Id:</strong> {user.id}</p>
-                                    <p><strong>Email:</strong> {user.email}</p>
-                                    <p><strong>Idade:</strong> {user.age}</p>
+                    <section className={styles.divBtn}>
+                        {
+                            show && (
+                                <button onClick={editUser} className={styles.btn}>Editar</button>
+                            )
+                        }
+                        {
+                            !show && (
+                                <button onClick={showUsers} className={styles.btn}>Registrar</button>
+                            )
+                        }
+                    </section>
+                </article>
+                <article className={styles.userlist}>
+                    <h2>Lista</h2>
+                    <section className={styles.secusers}>
+                        {
+                            list.map((user) => (
+                                <div key={user.id} className={styles.users}>
+                                    <div className={styles.list}>
+                                        <p><strong>Name:</strong> {user.name}</p>
+                                        <p><strong>Id:</strong> {user.id}</p>
+                                        <p><strong>Email:</strong> {user.email}</p>
+                                        <p><strong>Idade:</strong> {user.age}</p>
+                                    </div>
+                                    <div className={styles.btnusers}>
+                                        <button onClick={() => edit(user.name, user.email, user.birthdate, user.id)} className={styles.edit}>Editar</button>
+                                        <button onClick={() => delet(user.id)} className={styles.delete}>Excluir</button>
+                                    </div>
                                 </div>
-                                <div className={styles.btnusers}>
-                                    <button onClick={() => edit(user.name, user.email, user.birthdate, user.id)} className={styles.edit}>Editar</button>
-                                    <button onClick={() => delet(user.id)} className={styles.delete}>Excluir</button>
-                                </div> 
-                            </div>
-                        ))
-                    }
-                </section>
-            </article>
+                            ))
+                        }
+                    </section>
+                </article>
+            </div>
+            <Footer></Footer>
         </main>
     );
 }
