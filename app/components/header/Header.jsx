@@ -10,8 +10,8 @@ function Header() {
         </div>
         <div className={styles.links}>
             <Link href={'/'}>Home</Link>
-            <Link href={'/'}>Home</Link>
-            <Link href={'/'}>Home</Link>
+            <Link href={'/'}>Contador Basquete</Link>
+            <Link href={'/'}>Cadastro</Link>
         </div>
     </div>
   )
