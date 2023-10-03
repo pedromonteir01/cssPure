@@ -79,7 +79,7 @@ function Login() {
             <h1>REGISTER</h1>
             <article className={styles.loginform}>
                 <section className={styles.inputfield}>
-                    <label>Name:</label>
+                    <label>Nome:</label>
                     <input type="text"
                         value={name}
                         onChange={(param) => {
@@ -90,7 +90,7 @@ function Login() {
                 </section>
 
                 <section className={styles.inputfield}>
-                    <label>Email:</label>
+                    <label>E-mail:</label>
                     <input type="email"
                         value={email}
                         onChange={(param) => {
@@ -101,7 +101,7 @@ function Login() {
                 </section>
 
                 <section className={styles.inputfield}>
-                    <label>Birthdate:</label>
+                    <label>Data de nascimento:</label>
                     <input type="date"
                         value={birthday}
                         onChange={(param) => {
@@ -119,7 +119,7 @@ function Login() {
                     }
                       {
                         !show && (
-                            <button onClick={showUsers} className={styles.btn}>Regitser</button>
+                            <button onClick={showUsers} className={styles.btn}>Registrar</button>
                         )
                     }
                 </section>
