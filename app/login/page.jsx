@@ -7,6 +7,7 @@ import { useAmp } from 'next/amp';
 import { useSearchParams } from 'next/navigation';
 import Header from '../components/header/Header';
 import Footer from '../components/footer/Footer';
+import { Popup } from '../components/popup/Popup';
 
 const users = new Users();
 
@@ -25,7 +26,7 @@ function Login() {
 
     const showUsers = () => {
         if (name.trim() == '' || email.trim() == '' || birthday.trim() == '') {
-            alert('test');
+            handleShowPopup('Preencha todos os campos', 'error', 3000)
         } else {
             const user = new User(name, email, birthday);
             users.addUser(user);
@@ -75,6 +76,22 @@ function Login() {
             setList(users.list);
         }
     }
+
+    const [showPopup, setShowPopup] = useState(false);
+    const [showMesage, setShowMessage] = useState('');
+    const [showType, setShowType] = useState('');
+
+
+    function handleShowPopup(message, type, time) {
+        setShowPopup(true);
+        setShowMessage(message);
+        setShowType(type);
+
+        setTimeout(() => {
+            setShowPopup(false) } , 
+            time);
+        }
+    
 
     return (
         <main>
@@ -150,6 +167,14 @@ function Login() {
                     </section>
                 </article>
             </div>
+            {
+                showPopup && (
+                    <Popup
+                        msg={showMesage}
+                        type={showType}
+                    />
+                )
+            }
             <Footer/>
         </main>
     );
