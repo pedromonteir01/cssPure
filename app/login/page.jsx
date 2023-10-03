@@ -3,18 +3,23 @@ import { useState } from 'react';
 import styles from './login.module.css'
 import User from '../models/User/user';
 import Users from '../models/User/users';
+import { useAmp } from 'next/amp';
+import { useSearchParams } from 'next/navigation';
 
 const users = new Users();
 
 function Login() {
 
-    let aux = null;
+    const [aux, setAux] = useState(null);
 
     let empty = '';
     const [name, setName] = useState(empty);
     const [email, setEmail] = useState(empty);
     const [birthday, setBirthday] = useState(empty);
 
+    const [show, setShow] = useState(false);
+
+    const [list, setList] = useState(users.list);
 
     const showUsers = () => {
         if (name.trim() == '' || email.trim() == '' || birthday.trim() == '') {
@@ -31,25 +36,41 @@ function Login() {
         }
     }
 
-    const editUser = (name, email, birthdate, id) => {
+    const edit = (name, email, birthdate, id) => {
+        setShow(true);
+
         setName(name);
         setEmail(email);
         setBirthday(birthdate);
 
-        aux = id;
+        setAux(id);        
     }
 
-    const edit = (id) => {
-        console.log(id);
+    const editUser = () => {
+
+        users.editUser(aux, name, email, birthday);
+
+        setName(empty);
+        setEmail(empty);
+        setBirthday(empty);
+
+        setList(users.list);
+        
+        setShow(false);
+
+        setAux(null);
     }
 
     const delet = (id) => {
         let already = false;
 
-        users.deleteUser(id, already);
+        users.list.map((user) => (
+            user.id == id ? already = true : already
+        ))
 
         if(already) {
-         users.list = users.list.filter(user => user.id !== id);
+         users.deleteUser(id);
+         setList(users.list);
         }
     }
 
@@ -91,15 +112,23 @@ function Login() {
                 </section>
 
                 <section className={styles.divBtn}>
-                    <button onClick={showUsers} className={`${styles.show} ${styles.btn}`}>Regitser</button>
-                    <button onClick={() => edit(aux)} className={`${styles.hidden} ${styles.btn}`}>Editar </button>
+                    {
+                        show && (
+                            <button onClick={editUser} className={styles.btn}>Editar</button>
+                        )
+                    }
+                      {
+                        !show && (
+                            <button onClick={showUsers} className={styles.btn}>Regitser</button>
+                        )
+                    }
                 </section>
             </article>
             <article className={styles.userlist}>
                 <h2>Lista</h2>
                 <section className={styles.secusers}>
                     {
-                        users.list.map((user) => (
+                        list.map((user) => (
                             <div key={user.id} className={styles.users}>
                                 <div className={styles.list}>
                                     <p><strong>Name:</strong> {user.name}</p>
@@ -108,8 +137,7 @@ function Login() {
                                     <p><strong>Idade:</strong> {user.age}</p>
                                 </div>
                                 <div className={styles.btnusers}>
-                                    {/*   <button onClick={editUser(user.name, user.email, user.birthdate, user.id)} className={styles.edit}>Editar</button> */}
-                                    {/*   <button onClick={delet(user.id)} className={styles.delete}>Excluir</button> */}
+                                    <button onClick={() => edit(user.name, user.email, user.birthdate, user.id)} className={styles.edit}>Editar</button>
                                     <button onClick={() => delet(user.id)} className={styles.delete}>Excluir</button>
                                 </div> 
                             </div>

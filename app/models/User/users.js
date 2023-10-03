@@ -7,9 +7,17 @@ export default class Users {
         this.list.push(user);
     }
 
-    deleteUser(id, stateVar) {
-        this.list.map((user) => (
-            user.id == id ? stateVar = true : stateVar
-        ))
+    deleteUser(id) {
+        return this.list = this.list.filter(user => user.id !== id);
+    }
+
+
+    editUser(id, name, email, birthdate) {
+        this.list.map((user) => {
+            if(user.id == id) {
+            user.name = name;
+            user.email = email;
+            user.birthdate = birthdate;
+        }})
     }
 }
