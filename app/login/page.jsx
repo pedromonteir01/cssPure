@@ -78,7 +78,7 @@ function Login() {
 
     return (
         <main>
-            <Header></Header>
+            <Header/>
             <div className={styles.mainContent}>
                 <h1>REGISTER</h1>
                 <article className={styles.loginform}>
