@@ -3,11 +3,12 @@
     align-items: center;
     border-radius: 10px;
     width: 46rem;
-    display: flex;
     flex-direction: column;
     padding: 20px;
     margin-bottom: 5rem;
     background-color: rgb(240, 240, 240);
+    justify-content: center;
+    margin-left: 25rem;
 }
 
 .container2{
