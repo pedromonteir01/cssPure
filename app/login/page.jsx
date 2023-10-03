@@ -44,16 +44,13 @@ function Login() {
     }
 
     const delet = (id) => {
-        console.log(id);
-        // let already = false;
+        let already = false;
 
-        // users.list.map((user) => (
-        //     user.id == id ? already = true : already
-        // ))
+        users.deleteUser(id, already);
 
-        // if (already) {
-        //     users.list = users.list.filter(user => user.id !== id);
-        // }
+        if(already) {
+         users.list = users.list.filter(user => user.id !== id);
+        }
     }
 
     return (
